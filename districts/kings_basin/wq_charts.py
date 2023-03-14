@@ -4,6 +4,7 @@ import numpy as np
 import polars as pl
 import plotly.express as px
 from pathlib import Path
+from datetime import date
 
 # st.set_page_config(
 # 	layout="wide",
@@ -177,10 +178,9 @@ def main():
 
 			# add vline at 2021
 			fig.add_vline(x="2022-01-01", line_dash="dash", line_color="blue" )
-			from datetime import date
 			# fig.add_vline(x=date(2021,1,1), line_dash="dash", annotation_text="2021", annotation_position="top right", line_color="blue")
 
-			st.plotly_chart(fig)
+			st.plotly_chart(fig,use_container_width=True)
 
 
 

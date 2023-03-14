@@ -44,7 +44,7 @@ def main():
 	# data = data.pipe(add_date)
 	pivot = pd.pivot_table(data,values=['dtw_ft'],index=['date'],columns=['well_id']).droplevel(0,axis='columns')
 	# if st.button('Graph'):
-	st.plotly_chart(create_dtw_figure(data))
+	st.plotly_chart(create_dtw_figure(data),use_container_width=True)
 	# if st.button('Table'):
 	pivot.index = [to_month_year(i) for i in pivot.index]
 

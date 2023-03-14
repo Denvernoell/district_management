@@ -92,7 +92,7 @@ def plot_positions(df,points_to_use):
 def gse(df,points_to_use):
 	data = df.loc[df['point_id'].isin(points_to_use)]
 	pivot = pd.pivot_table(data,values=['elevation'],index=['date'],columns=['point_id']).droplevel(0,axis='columns')
-	st.plotly_chart(create_subsidence_figure(data))
+	st.plotly_chart(create_subsidence_figure(data),use_container_width=True)
 
 	# st.dataframe(pivot)
 	return points_to_use

@@ -58,7 +58,7 @@ def main():
     # if st.button('Graph'):
 
     figure = create_dtw_figure(data)
-    st.plotly_chart(figure)
+    st.plotly_chart(figure,use_container_width=True)
     import plotly
     def export_figure(figure,name):
         in_to_pt = lambda inch: inch * (1000 / 10.417)

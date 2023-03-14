@@ -53,7 +53,7 @@ class Well:
 			# ! Check if Extractions.1 affects this
 			well_extractions = extractions.loc[extractions['well_id'] == name]
 			st.plotly_chart(
-				self.well_extractions_figure(well_extractions)
+				self.well_extractions_figure(well_extractions),use_container_width=True
 			)
 			st.dataframe(well_extractions)
 			export_df(well_extractions,'well_extractions.xlsx',index=False)
@@ -66,7 +66,7 @@ class Well:
 
 			well_depth_to_water = depth_to_water.loc[depth_to_water['well_id'] == name]
 			# st.markdown(name)
-			st.plotly_chart(self.create_dtw_figure(well_depth_to_water))
+			st.plotly_chart(self.create_dtw_figure(well_depth_to_water),use_container_width=True)
 
 			st.dataframe(well_depth_to_water)
 			export_df(well_depth_to_water,'well_depth_to_water.xlsx',index=False)

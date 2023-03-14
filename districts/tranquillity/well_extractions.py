@@ -35,7 +35,7 @@ if st.session_state['Logged In']:
 		get_date = lambda year,month: arrow.get(f"{year}-{month}","YYYY-M")#.format("MMMM YYYY")
 		add_date = lambda df: df.assign(date = [get_date(y['year'],y['month']) for i,y in df.iterrows()])
 		data = data.pipe(add_date)
-		st.plotly_chart(create_extractions_figure(data))
+		st.plotly_chart(create_extractions_figure(data),use_container_width=True)
 
 		pivot = pd.pivot_table(data,values=['monthly_extraction_AF'],index=['date'],columns=['well_id'],margins=True,margins_name="Total",aggfunc=sum).droplevel(0,axis='columns')
 
