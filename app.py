@@ -77,13 +77,16 @@ def add_sidebar():
 
 	# st.session_state['district'] = st.sidebar.radio('District', districts.keys())
 	district = pages[st.sidebar.radio('Districts', pages.keys())]
+	st.sidebar.markdown("---")
 	district.homepage()
 
 
-public_pages,private_pages = st.tabs(['Public','Private'])
+# public_pages,private_pages = st.tabs(['Public','Private'])
 
+visibility = st.sidebar.radio('Visibility', ['Public','Private'],horizontal=True)
 
-with public_pages:
+# with public_pages:
+if visibility == 'Public':
 	pages = {
 		'Water Rights':District(
 			name='Water Rights',
@@ -94,11 +97,28 @@ with public_pages:
 				'Triangle T Diversion Checker':'triangle_t_diversion_checker',
 			}
 		),
+		'General':District(
+			name='General',
+			folder='general',
+			pages = {
+				"Unit Conversion":'unit_conversion',
+			}
+		),
+		'Kings Basin':District(
+			name='Kings Basin',
+			folder='kings_basin',
+			pages = {
+				"Water Quality":'wq_charts',
+			}
+		),
 	}
 	district = pages[st.sidebar.radio('Districts', pages.keys())]
+	st.sidebar.markdown("---")
 	district.homepage()
 
-with private_pages:
+
+# with private_pages:
+if visibility == 'Private':
 	if 'Logged In' not in st.session_state:
 		st.session_state['Logged In'] = False
 	# try:
