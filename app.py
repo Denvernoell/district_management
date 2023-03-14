@@ -39,7 +39,7 @@ def add_sidebar():
 	st.sidebar.markdown("---")
 	# st.sidebar("---")
 	# st.markdown(permissions)
-	districts = {
+	pages = {
 		'Aliso Water District':District(
 			name='Aliso Water District',
 			folder='aliso',
@@ -63,33 +63,50 @@ def add_sidebar():
 					# "Water Quality":'water_quality',
 					"Depth To Water":'depth_to_water',
 					"Well Data":'well_data',
+					"Well Locations":'well_locations',
 				}
 		)
 		}
 	
 	if permissions == 'all':
-		districts = districts
+		pages = pages
 			
 	else:
-		districts = {k:v for k,v in districts.items() if k in permissions.split(';')}
+		pages = {k:v for k,v in pages.items() if k in permissions.split(';')}
 	# districts.append('public')
 
 	# st.session_state['district'] = st.sidebar.radio('District', districts.keys())
-	district = districts[st.sidebar.radio('District', districts.keys())]
+	district = pages[st.sidebar.radio('Districts', pages.keys())]
 	district.homepage()
 
 
+public_pages,private_pages = st.tabs(['Public','Private'])
 
 
+with public_pages:
+	pages = {
+		'Water Rights':District(
+			name='Water Rights',
+			folder='water_rights',
+			pages = {
+				"Aliso Diversion Checker":'aliso_diversion_checker',
+				"Flood Watch":'flood_watch',
+				'Triangle T Diversion Checker':'triangle_t_diversion_checker',
+			}
+		),
+	}
+	district = pages[st.sidebar.radio('Districts', pages.keys())]
+	district.homepage()
 
-if 'Logged In' not in st.session_state:
-	st.session_state['Logged In'] = False
-# try:
-if st.session_state['Logged In']:
-	# st.success('Logged in')
-	add_sidebar()
-else:
-	login_page()
+with private_pages:
+	if 'Logged In' not in st.session_state:
+		st.session_state['Logged In'] = False
+	# try:
+	if st.session_state['Logged In']:
+		# st.success('Logged in')
+		add_sidebar()
+	else:
+		login_page()
 
 # except Exception as e:
 # 	st.markdown(e)
