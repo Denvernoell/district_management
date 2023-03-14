@@ -7,9 +7,10 @@ from dashboard_shared import Components, Table, District
 
 C = Components("P&P")
 C.header()
+st.session_state['client'] = supabase.create_client(st.secrets['supabase_url'],st.secrets['supabase_key'])
 
 def login_page():
-	st.session_state['client'] = supabase.create_client(st.secrets['supabase_url'],st.secrets['supabase_key'])
+	# st.session_state['client'] = supabase.create_client(st.secrets['supabase_url'],st.secrets['supabase_key'])
 	with st.form(key='login'):
 		email = st.text_input("Email")
 		password = st.text_input("Password", type="password")
@@ -102,6 +103,7 @@ if visibility == 'Public':
 			folder='general',
 			pages = {
 				"Unit Conversion":'unit_conversion',
+				'GIS Locations':'gis_locations',
 			}
 		),
 		'Kings Basin':District(
