@@ -89,7 +89,7 @@ def main():
 			# df['value'] = df['value'].map('${:,.0f}'.format)
 			# df['value'] = df['value'].astype(float).map('${:,.0f}'.format)
 
-			st.dataframe(df[['value']].style.format("{:,.0f}"))
+			st.dataframe(df[['value']].style.format("{:,.0f}"),use_container_width=True)
 			if self.sensors == "20":
 				st.markdown(f"**Rolling Average = {self.flow['value'].mean():,.0f}**")
 
@@ -274,7 +274,7 @@ def main():
 
 
 		with st.expander("c. Hourly and 24 hour rolling mean flow of SJR at Newman (Gage 11274000)"):
-			st.dataframe(newman[["15012_00060"]].style.format("{:,.0f}"))
+			st.dataframe(newman[["15012_00060"]].style.format("{:,.0f}"),use_container_width=True)
 			st.markdown(f"Rolling Average = {newman_average:,.0f} CFS")
 
 

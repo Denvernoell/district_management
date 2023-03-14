@@ -43,7 +43,7 @@ class Well:
 			# locations = st.session_state['dfs']['TID_well_locations']
 			locations = Table('TID_well_locations').df
 			well_location = locations.loc[locations['well_id'] == name]
-			st.dataframe(well_location)
+			st.dataframe(well_location,use_container_width=True)
 			self.well_map(well_location)
 		
 		name = well_aliases['Alias - Extractions']
@@ -55,20 +55,20 @@ class Well:
 			st.plotly_chart(
 				self.well_extractions_figure(well_extractions),use_container_width=True
 			)
-			st.dataframe(well_extractions)
+			st.dataframe(well_extractions,use_container_width=True)
 			export_df(well_extractions,'well_extractions.xlsx',index=False)
 		
 		name = well_aliases['Alias - Depth to water']
 		if name is not None:
 			# depth_to_water = st.session_state['dfs']['TID_well_depth_to_water_ft']
 			depth_to_water = Table('TID_well_depth_to_water_ft').df.sort_values(['date'])
-			st.dataframe(depth_to_water)
+			st.dataframe(depth_to_water,use_container_width=True)
 
 			well_depth_to_water = depth_to_water.loc[depth_to_water['well_id'] == name]
 			# st.markdown(name)
 			st.plotly_chart(self.create_dtw_figure(well_depth_to_water),use_container_width=True)
 
-			st.dataframe(well_depth_to_water)
+			st.dataframe(well_depth_to_water,use_container_width=True)
 			export_df(well_depth_to_water,'well_depth_to_water.xlsx',index=False)
 	
 	def create_dtw_figure(self,df):
@@ -228,7 +228,7 @@ def main():
 	# name_df = st.session_state['dfs']['TID_well_names']
 	name_df = Table('TID_well_names').df
 	if st.checkbox("Show well names"):
-		st.dataframe(name_df.pipe(format_df))
+		st.dataframe(name_df.pipe(format_df),use_container_width=True)
 
 	cols = [
 		# "well_id",
@@ -249,7 +249,7 @@ def main():
 
 
 	well_info = name_df.loc[name_df.isin([wells_to_use]).any(axis='columns')]
-	st.dataframe(well_info)
+	st.dataframe(well_info,use_container_width=True)
 
 	W = Well(well_info)
 	# W

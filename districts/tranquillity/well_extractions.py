@@ -46,7 +46,7 @@ if st.session_state['Logged In']:
 		# if st.button('Graph'):
 		# if st.button('Table'):
 		# st.dataframe(pivot.style.applymap(lambda x: 'color: transparent' if pd.isnull(x) else '').format(formatter="{:.2f}"))
-		st.dataframe(pivot.style.applymap(lambda x: 'color: transparent' if x == 0 or pd.isnull(x) else '').format(formatter="{:.2f}"))
+		st.dataframe(pivot.style.applymap(lambda x: 'color: transparent' if x == 0 or pd.isnull(x) else '').format(formatter="{:.2f}"),use_container_width=True)
 		# st.markdown(pivot.index)
 
 			# st.dataframe(data)

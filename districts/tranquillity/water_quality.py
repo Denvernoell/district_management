@@ -48,5 +48,5 @@ def main():
 	# if st.button('Table'):
 	pivot.index = [to_month_year(i) for i in pivot.index]
 
-	st.dataframe(pivot.style.applymap(lambda x: 'color: transparent' if pd.isnull(x) else '').format(formatter="{:.2f}"))
+	st.dataframe(pivot.style.applymap(lambda x: 'color: transparent' if pd.isnull(x) else '').format(formatter="{:.2f}"),use_container_width=True)
 	export_df(pivot,"DTW.xlsx")
